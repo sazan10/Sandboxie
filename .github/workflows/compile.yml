@@ -11,6 +11,8 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: 7a2a6e1728da40ccdfd9d318f4faf813298c0b28
+    - name: Setup msbuild
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Build C Code
+    - name: Build Sandboxie x64 (all)
       run: msbuild /t:build Sandboxie\Sandbox.sln /p:Configuration="SbieRelease" /p:Platform=x64 -maxcpucount:8
