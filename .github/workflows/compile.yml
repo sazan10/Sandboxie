@@ -1,6 +1,18 @@
 name: Linux Build
 
 on: push
+env:
+  qt_version: 5.15.14
+  qt6_version: 6.3.1
+  openssl_version: 3.3.1
+  ghSsl_user: xanasoft
+  ghSsl_repo: openssl-builds
+  #ghQt6Win7_user: DavidXanatos
+  #ghQt6Win7_repo: qtbase
+  ghQtBuilds_user: xanasoft
+  ghQtBuilds_repo: qt-builds
+  ghQtBuilds_hash_x86: bf4124046cc50ccbbeb3f786c041e884fd4205cd6e616070a75c850105cbf1db
+  ghQtBuilds_hash_x64: 30290d82a02bfaa24c1bf37bcb9c074aba18a673a7176628fccdf71197cee898
 
 jobs:
   build:
