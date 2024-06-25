@@ -3,19 +3,6 @@ name: CI
 on:
   push:
   
-env:
-  qt_version: 5.15.14
-  qt6_version: 6.3.1
-  openssl_version: 3.3.1
-  ghSsl_user: xanasoft
-  ghSsl_repo: openssl-builds
-  #ghQt6Win7_user: DavidXanatos
-  #ghQt6Win7_repo: qtbase
-  ghQtBuilds_user: xanasoft
-  ghQtBuilds_repo: qt-builds
-  ghQtBuilds_hash_x86: bf4124046cc50ccbbeb3f786c041e884fd4205cd6e616070a75c850105cbf1db
-  ghQtBuilds_hash_x64: 30290d82a02bfaa24c1bf37bcb9c074aba18a673a7176628fccdf71197cee898
-
 jobs:
   Build_x64:
     runs-on: windows-2019
@@ -24,7 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.5
-
+        with:
+          ref: 7a2a6e1728da40ccdfd9d318f4faf813298c0b28
       - name: Setup msbuild
         uses: microsoft/setup-msbuild@v2
 
@@ -33,7 +21,7 @@ jobs:
     #
 
       - name: Build Sandboxie x86 (DLLs & svc)
-        run: msbuild /t:build Sandboxie\SandboxDll.sln /p:Configuration="SbieRelease" /p:Platform=x64  -maxcpucount:8
+        run: msbuild /t:build Sandboxie\SandboxDll.sln /p:Configuration="SbieRelease" /p:Platform=Win32  -maxcpucount:8
 
       - name: Build Sandboxie x64 (all)
         run: msbuild /t:build Sandboxie\Sandbox.sln /p:Configuration="SbieRelease" /p:Platform=x64 -maxcpucount:8
